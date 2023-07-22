@@ -1,8 +1,39 @@
-import { View } from "@tarojs/components";
-import { FC } from "react";
+import Taro from '@tarojs/taro'
+import { useState } from 'react'
+import { View } from '@tarojs/components'
+import { ThreadList } from '@/components/thread_list'
+import { IThread } from '@/types/thread'
+import api from '@/utils/api'
+import { useAsyncEffect } from '@/utils/index'
 
-const Hot: FC = () => {
-  return <View>hot</View>
+import './index.scss'
+
+function Hot() {
+  const [loading, setLoading] = useState(true)
+  const [threads, setThreads] = useState<IThread[]>([])
+
+  useAsyncEffect(async () => {
+    try {
+      const res = await Taro.request<IThread[]>({
+        url: api.getHotNodes()
+      })
+      setLoading(false)
+      setThreads(res.data)
+    } catch (error) {
+      Taro.showToast({
+        title: '载入远程数据错误'
+      })
+    }
+  }, [])
+
+  return (
+    <View className='index'>
+      <ThreadList
+        threads={threads}
+        loading={loading}
+      />
+    </View>
+  )
 }
 
 export default Hot
