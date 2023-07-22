@@ -69,6 +69,8 @@ const config = {
   alias: {
     '@/components': resolve(__dirname, '..', 'src/components'),
     '@/utils': resolve(__dirname, '..', 'src/utils'),
+    '@/types': resolve(__dirname, '..', 'src/types'),
+    '@/resource': resolve(__dirname, '..', 'src/resource'),
     '@/package': resolve(__dirname, '..', 'package.json'),
     '@/project': resolve(__dirname, '..', 'project.config.json'),
   },

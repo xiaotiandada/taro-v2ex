@@ -24,6 +24,8 @@
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/utils/*": ["./src/utils/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/resource/*": ["./src/resource/*"],
       "@/package": ["./package.json"],
       "@/project": ["./project.config.json"]
     }

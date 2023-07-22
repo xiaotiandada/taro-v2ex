@@ -1,12 +1,11 @@
 export interface IThread {
-  node: IThreadNode;
-  member: IThreadMember;
+  node: INode;
+  member: IMember;
   last_reply_by: string;
   last_touched: number;
   title: string;
   url: string;
   created: number;
-  deleted: number;
   content: string;
   content_rendered: string;
   last_modified: number;
@@ -14,7 +13,7 @@ export interface IThread {
   id: number;
 }
 
-export interface IThreadNode {
+export interface INode {
   avatar_large: string;
   name: string;
   avatar_normal: string;
@@ -26,30 +25,25 @@ export interface IThreadNode {
   title_alternative: string;
   avatar_mini: string;
   stars: number;
-  aliases: any[];
   root: boolean;
   id: number;
   parent_node_name: string;
 }
 
-export interface IThreadMember {
-  id: number;
+export interface IMember {
   username: string;
-  url: string;
-  website?: string;
-  twitter?: string;
-  psn?: string;
-  github?: string;
-  btc?: string;
-  location?: string;
-  tagline?: string;
-  bio?: string;
-  avatar_mini: string;
+  website?: null;
+  github?: null;
+  psn?: null;
   avatar_normal: string;
-  avatar_large: string;
-  avatar_xlarge?: string;
-  avatar_xxlarge?: string;
-  avatar_xxxlarge?: string;
+  bio?: null;
+  url: string;
+  tagline?: null;
+  twitter?: null;
   created: number;
-  last_modified: number;
+  avatar_large: string;
+  avatar_mini: string;
+  location?: null;
+  btc?: null;
+  id: number;
 }

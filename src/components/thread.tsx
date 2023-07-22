@@ -1,19 +1,39 @@
 import { FC, useCallback, useMemo } from "react";
-import { View, Text, Navigator, Image } from '@tarojs/components'
-import { IThread } from "src/types/thread";
-import Taro, { eventCenter } from "@tarojs/taro";
+import { View, Text, Image } from '@tarojs/components'
+import { IMember, INode } from "src/types/thread";
+import Taro from "@tarojs/taro";
 
-const Thread: FC<IThread> = ({ title, member, last_modified, replies, node, id }) => {
+import { Thread_DETAIL_NAVIGATE } from "@/utils/index";
+
+import './thread.scss'
+
+interface IProps {
+  title: string,
+  member: IMember,
+  node: INode,
+  last_modified: number,
+  tid: number,
+  replies: number,
+  key?: number,
+  not_navi?: boolean // 不导航到 detail
+}
+
+const Thread: FC<IProps> = ({ title, member, last_modified, replies, node, tid, key, not_navi }) => {
   const time = useMemo(() => '......', [])
-  const usernameCls = useMemo(() => `author ${'' ? 'bold' : ''}`, [])
+  const usernameCls = `author ${not_navi ? 'bold' : ''}`
 
   const handleNavigate = useCallback(() => {
-    // eventCenter.trigger(Thread_DETAIL_NAVIGATE, this.props)
-    // 跳转到帖子详情
+    // 这里必须显式指名 this.props 包含 tid
+    // 或设置 defaultProps
+    if (not_navi) {
+      return
+    }
+    // 懒得用 redux 了
+    // eventCenter.trigger(Thread_DETAIL_NAVIGATE, { title, member, last_modified, replies, node, tid, key })
     Taro.navigateTo({
-      url: '/pages/thread_detail/thread_detail',
+      url: '/pages/thread_detail/thread_detail'
     })
-  }, [])
+  }, [not_navi])
 
   return (
     <View className='thread' onClick={handleNavigate}>
