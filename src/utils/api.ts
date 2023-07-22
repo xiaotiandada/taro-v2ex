@@ -35,6 +35,18 @@ function queryString(obj?: Object) {
   );
 }
 
+function getAllNode() {
+  return HOST_URI + ALL_NODE;
+}
+
+function getNodeInfo(o?) {
+  return HOST_URI + NODE_INFO + queryString(o);
+}
+
+function getHotNodes() {
+  return HOST_URI + HOT_TOPIC;
+}
+
 function getLatestTopic(o?) {
   return HOST_URI + LATEST_TOPIC + queryString(o);
 }
@@ -48,7 +60,11 @@ function getTopics(o?) {
 }
 
 export default {
+  getAllNode,
+  getNodeInfo,
   getLatestTopic,
   getReplies,
+  getHotNodes,
+  queryString,
   getTopics,
 };
