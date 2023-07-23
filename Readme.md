@@ -2,7 +2,7 @@
 
 此项目展示了如何在 Taro 中使用 [React Hooks](https://reactjs.org/docs/hooks-intro.html)，需要 Taro 3.6 以上版本构建。
 
-> 基于 [taro-v2ex-hooks](https://github.com/NervJS/taro-v2ex-hooks) 开发.
+> 基于 [taro-v2ex-hooks](https://github.com/NervJS/taro-v2ex-hooks) 开发。
 
 - [教程](https://docs.taro.zone/docs/guide)
 - [taro-v2ex-hooks](https://github.com/NervJS/taro-v2ex-hooks)
@@ -31,4 +31,4 @@ $ pnpm run build:weapp --watch
 
 ## TODO
 
-- 使用 eslint、prettier、husky、lint-staged、commitline 去做规范
+- 使用 eslint、prettier、husky、lint-staged、commitline 去做规范。
