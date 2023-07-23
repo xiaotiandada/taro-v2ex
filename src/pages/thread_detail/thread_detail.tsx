@@ -5,8 +5,8 @@ import { View, Image } from "@tarojs/components";
 import api from "@/utils/api";
 import { useAsyncEffect, prettyHTML } from "@/utils/index";
 import { IThread } from "@/types/thread";
-import { Loading } from "@/components/loading";
 import { Thread } from "@/components/thread";
+import { Loading } from "@/components/loading";
 import { useAppSelector } from "@/store/hooks";
 
 import "./index.scss";

@@ -7,7 +7,7 @@ import { useAppDispatch } from "@/store/hooks";
 
 import { setCurrentThread } from "@/store/thread/threadSlice";
 
-import "./thread.scss";
+import styles from "./index.module.scss";
 
 export interface IThreadProps {
   title: string;
@@ -74,23 +74,23 @@ const Thread: FC<IThreadProps> = ({
   ]);
 
   return (
-    <View className='thread' onClick={handleNavigate}>
-      <View className='info'>
+    <View className={styles.thread} onClick={handleNavigate}>
+      <View className={styles.info}>
         <View>
-          <Image src={member.avatar_large} className='avatar' />
+          <Image src={member.avatar_large} className={styles.avatar} />
         </View>
-        <View className='middle'>
+        <View className={styles.middle}>
           <View className={usernameCls}>{member.username}</View>
-          <View className='replies'>
-            <Text className='mr10'>{time}</Text>
+          <View className={styles.replies}>
+            <Text className={styles.mr10}>{time}</Text>
             <Text>评论 {replies}</Text>
           </View>
         </View>
-        <View className='node'>
-          <Text className='tag'>{node.title}</Text>
+        <View className={styles.node}>
+          <Text className={styles.tag}>{node.title}</Text>
         </View>
       </View>
-      <Text className='title'>{title}</Text>
+      <Text className={styles.title}>{title}</Text>
     </View>
   );
 };
