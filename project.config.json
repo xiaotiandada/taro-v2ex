@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/weapp/",
-  "description": "taro shop",
+  "description": "taro v2ex",
   "setting": {
     "urlCheck": true,
     "es6": false,

@@ -1,8 +1,8 @@
 {
-  "name": "taro-shop",
+  "name": "taro-v2ex",
   "version": "1.0.0",
   "private": true,
-  "description": "taro shop",
+  "description": "taro v2ex",
   "templateInfo": {
     "name": "default-youshu",
     "typescript": true,

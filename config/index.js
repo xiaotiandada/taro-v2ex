@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 
 const config = {
-  projectName: 'taro-shop',
+  projectName: 'taro-v2ex',
   date: '2023-7-22',
   designWidth: 750,
   deviceRatio: {

@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "taro-shop",
-  "description": "taro shop",
+  "projectname": "taro-v2ex",
+  "description": "taro v2ex",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
