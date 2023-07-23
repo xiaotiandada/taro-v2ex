@@ -2,12 +2,13 @@ import { FC, useCallback, useMemo } from "react";
 import { View, Text, Image } from '@tarojs/components'
 import { IMember, INode } from "src/types/thread";
 import Taro from "@tarojs/taro";
+import { useAppDispatch } from "@/store/hooks";
 
-import { Thread_DETAIL_NAVIGATE } from "@/utils/index";
+import { setCurrentThread } from "@/store/thread/threadSlice";
 
 import './thread.scss'
 
-interface IProps {
+export interface IThreadProps {
   title: string,
   member: IMember,
   node: INode,
@@ -18,9 +19,10 @@ interface IProps {
   not_navi?: boolean // 不导航到 detail
 }
 
-const Thread: FC<IProps> = ({ title, member, last_modified, replies, node, tid, key, not_navi }) => {
+const Thread: FC<IThreadProps> = ({ title, member, last_modified, replies, node, tid, key, not_navi }) => {
   const time = useMemo(() => '......', [])
-  const usernameCls = `author ${not_navi ? 'bold' : ''}`
+  const dispatch = useAppDispatch();
+  const usernameCls = useMemo(() => `author ${not_navi ? 'bold' : ''}`, [])
 
   const handleNavigate = useCallback(() => {
     // 这里必须显式指名 this.props 包含 tid
@@ -28,12 +30,11 @@ const Thread: FC<IProps> = ({ title, member, last_modified, replies, node, tid, 
     if (not_navi) {
       return
     }
-    // 懒得用 redux 了
-    // eventCenter.trigger(Thread_DETAIL_NAVIGATE, { title, member, last_modified, replies, node, tid, key })
+    dispatch(setCurrentThread({ title, member, last_modified, replies, node, tid, key, not_navi }))
     Taro.navigateTo({
       url: '/pages/thread_detail/thread_detail'
     })
-  }, [not_navi])
+  }, [dispatch, key, last_modified, member, node, not_navi, replies, tid, title])
 
   return (
     <View className='thread' onClick={handleNavigate}>

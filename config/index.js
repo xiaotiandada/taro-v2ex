@@ -71,6 +71,7 @@ const config = {
     '@/utils': resolve(__dirname, '..', 'src/utils'),
     '@/types': resolve(__dirname, '..', 'src/types'),
     '@/resource': resolve(__dirname, '..', 'src/resource'),
+    '@/store': resolve(__dirname, '..', 'src/store'),
     '@/package': resolve(__dirname, '..', 'package.json'),
     '@/project': resolve(__dirname, '..', 'project.config.json'),
   },

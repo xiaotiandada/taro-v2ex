@@ -26,6 +26,7 @@
       "@/utils/*": ["./src/utils/*"],
       "@/types/*": ["./src/types/*"],
       "@/resource/*": ["./src/resource/*"],
+      "@/store/*": ["./src/store/*"],
       "@/package": ["./package.json"],
       "@/project": ["./project.config.json"]
     }

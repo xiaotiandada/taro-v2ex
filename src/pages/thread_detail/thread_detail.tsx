@@ -6,6 +6,7 @@ import { useAsyncEffect, prettyHTML } from "@/utils/index";
 import { IThread } from "@/types/thread";
 import { Loading } from "@/components/loading";
 import { Thread } from "@/components/thread";
+import { useAppSelector } from "@/store/hooks";
 
 import "./index.scss";
 
@@ -74,10 +75,19 @@ const ThreadDetail = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [replies, setReplies] = useState<IThread[]>([]);
   const [content, setContent] = useState<string>("hello");
+  const currentThread = useAppSelector(state => state.thread.currentThread)
 
   useAsyncEffect(async () => {
     try {
-      const id = 12;
+      if (!currentThread?.tid) {
+        Taro.showToast({
+          title: "载入缓存错误",
+        });
+        return
+      }
+      console.log('currentThread', currentThread)
+
+      const id = currentThread.tid
       const [
         { data },
         {
