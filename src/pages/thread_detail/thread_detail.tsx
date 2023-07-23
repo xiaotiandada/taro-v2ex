@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import Taro from "@tarojs/taro";
-import { RichText, View, Image } from "@tarojs/components";
+import { View, Image } from "@tarojs/components";
 import api from "@/utils/api";
 import { useAsyncEffect, prettyHTML } from "@/utils/index";
 import { IThread } from "@/types/thread";
@@ -126,10 +126,7 @@ const ThreadDetail = () => {
             <View className='main'>
               <View className='author'>{reply.member.username}</View>
               <View className='time'>{time}</View>
-              <RichText
-                nodes={prettyHTML(reply.content_rendered)}
-                className='content'
-              />
+              <View dangerouslySetInnerHTML={{ __html: reply.content }} className='content'></View>
               <View className='floor'>{index + 1} 楼</View>
             </View>
           </View>
@@ -145,7 +142,7 @@ const ThreadDetail = () => {
       ) : (
         <View>
           <View className='main-content'>
-            <RichText nodes={content} />
+            <View dangerouslySetInnerHTML={{ __html: content }} className='content'></View>
           </View>
           <View className='replies'>{replieEl}</View>
         </View>

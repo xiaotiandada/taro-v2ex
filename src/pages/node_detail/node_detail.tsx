@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useRouter } from '@tarojs/taro'
 import { useLayoutEffect, useState } from 'react'
 import { View } from '@tarojs/components'
 import { IThread } from '@/types/thread'
@@ -11,19 +11,26 @@ import './index.scss'
 function NodeDetail () {
   const [ loading, setLoading ] = useState(true)
   const [ threads, setThreads ] = useState<IThread[]>([])
+  const [$instance] = useState(Taro.getCurrentInstance())
 
   useLayoutEffect(() => {
-    // const { full_name } = this.$router.params
-    const full_name = '%E7%A8%8B%E5%BA%8F%E5%91%98'
+    const full_name = $instance.router?.params.full_name
+    if (!full_name) return
+    
     Taro.setNavigationBarTitle({
       title: decodeURI(full_name)
     })
-  }, [])
+  }, [$instance])
 
   useAsyncEffect(async () => {
-    // short_name=programmer&full_name=%E7%A8%8B%E5%BA%8F%E5%91%98
-    // const { short_name } = this.$router.params
-    const short_name = 'programmer'
+    const short_name = $instance.router?.params.short_name
+    if (!short_name) {
+      Taro.showToast({
+        title: '载入远程数据错误'
+      })
+      return
+    }
+
     try {
       const { data: { id } } = await Taro.request({
         url: api.getNodeInfo({
