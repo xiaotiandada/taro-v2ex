@@ -1,18 +1,10 @@
-// import { eventCenter } from "@tarojs/taro";
+import { register } from "timeago.js";
 import { DependencyList, useEffect } from "react";
 import { IThread } from "src/types/thread";
-
-export const Thread_DETAIL_NAVIGATE = "thread_detail_navigate";
 
 export interface IThreadProps extends IThread {
   tid: string;
 }
-
-// eventCenter.on(Thread_DETAIL_NAVIGATE, (thread: IThreadProps) => {
-//   GlobalState.thread = thread;
-
-//   console.log("GlobalState", GlobalState);
-// });
 
 export function useAsyncEffect(
   effect: () => Promise<any>,
@@ -23,12 +15,8 @@ export function useAsyncEffect(
   }, deps);
 }
 
-export const GlobalState = {
-  thread: {} as IThreadProps,
-};
-
 // 数字/英文与中文之间需要加空格
-const betterChineseDict = (_, index) => {
+const betterChineseDict = (_, index): [string, string] => {
   return [
     ["刚刚", "片刻后"],
     ["%s 秒前", "%s 秒后"],
@@ -44,8 +32,10 @@ const betterChineseDict = (_, index) => {
     ["%s 月前", "%s 月后"],
     ["1 年前", "1 年后"],
     ["%s 年前", "%s 年后"],
-  ][index];
+  ][index] as [string, string];
 };
+
+register("zh", betterChineseDict);
 
 export function prettyHTML(str: string) {
   const lines = ["p", "h1", "h2", "h3", "h4", "h5", "h6"];

@@ -1,4 +1,4 @@
-import Taro, { useRouter } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { useLayoutEffect, useState } from 'react'
 import { View } from '@tarojs/components'
 import { IThread } from '@/types/thread'
